@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+from deepface import DeepFace
 
 cap = cv2.VideoCapture(0)
 mpHands = mp.solutions.hands
@@ -13,6 +14,15 @@ thumbCoordinate = (4,2)
 while True:
     success, img = cap.read()
     img = cv2.flip(img, 1)
+
+    try:
+        objs = DeepFace.analyze(img, actions = ['emotion'])
+        print(objs[0]['dominant_emotion'])
+        # print(objs['dominant_emotion'])
+    except:
+        print("NO FACE")
+
+
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
     multiLandMarks = results.multi_hand_landmarks
@@ -49,3 +59,5 @@ while True:
 
     cv2.imshow("Finger Counter", img)
     cv2.waitKey(1)
+
+
