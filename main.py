@@ -15,6 +15,7 @@ while True:
     success, img = cap.read()
     img = cv2.flip(img, 1)
 
+    # emotion detection
     try:
         objs = DeepFace.analyze(img, actions = ['emotion'])
         print(objs[0]['dominant_emotion'])
