@@ -22,6 +22,7 @@ while True:
     except:
         print("NO FACE")
 
+    cv2.putText(img, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
 
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
@@ -56,6 +57,7 @@ while True:
                     upCount += 1
         
                 cv2.putText(img, str(upCount), (150,150), cv2.FONT_HERSHEY_PLAIN, 12, (255,0,0), 12)
+                
 
     cv2.imshow("Finger Counter", img)
     cv2.waitKey(1)
