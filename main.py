@@ -14,18 +14,18 @@ thumbCoordinate = (4,2)
 while True:
     success, img = cap.read()
     img = cv2.flip(img, 1)
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # emotion detection
     try:
-        objs = DeepFace.analyze(img, actions = ['emotion'])
+        objs = DeepFace.analyze(imgRGB, actions = ['emotion'])
         print(objs[0]['dominant_emotion'])
         # print(objs['dominant_emotion'])
     except:
         print("NO FACE")
 
-    cv2.putText(img, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
+    cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
 
-    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
     multiLandMarks = results.multi_hand_landmarks
     lefthand = results.multi_handedness
