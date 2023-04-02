@@ -20,11 +20,11 @@ while True:
     try:
         objs = DeepFace.analyze(imgRGB, actions = ['emotion'])
         print(objs[0]['dominant_emotion'])
+        cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
         # print(objs['dominant_emotion'])
     except:
         print("NO FACE")
 
-    cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
 
     results = hands.process(imgRGB)
     multiLandMarks = results.multi_hand_landmarks
