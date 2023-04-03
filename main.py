@@ -46,7 +46,7 @@ while True:
                         cx, cy = int(lm.x * w), int(lm.y * h)
                         handPoints.append((cx, cy))
             
-            # draw circle on handPoints with (0, 0, 255) red colour
+                # draw circle on handPoints with (0, 0, 255) red colour
                 for point in handPoints:
                     cv2.circle(img, point, 10, (0, 0, 255), cv2.FILLED)
         
