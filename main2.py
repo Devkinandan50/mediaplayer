@@ -14,10 +14,11 @@ imgSize = 300
 folder = "Data/C"
 counter = 0
  
-labels = ["A", "B", "C"]
+labels = ["Pause", "Resume", "Forward", "Backward"]
  
 while True:
     success, img = cap.read()
+    img = cv2.flip(img, 1)
     imgOutput = img.copy()
     hands, img = detector.findHands(img)
     if hands:
