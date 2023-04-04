@@ -60,7 +60,7 @@ while True:
             cv2.rectangle(imgOutput, (x-offset, y-offset),
                           (x + w+offset, y + h+offset), (255, 0, 255), 4)
      
-     
+            cv2.waitKey(9)
             # cv2.imshow("ImageCrop", imgCrop)
             # cv2.imshow("ImageWhite", imgWhite)
  
