@@ -3,6 +3,7 @@ from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
+from deepface import DeepFace
  
 cap = cv2.VideoCapture(0)
 detector = HandDetector(maxHands=1)
@@ -20,6 +21,16 @@ while True:
     img = cv2.flip(img, 1)
     imgOutput = img.copy()
     hands, img = detector.findHands(img)
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    try:
+        objs = DeepFace.analyze(imgRGB, actions = ['emotion'])
+        print(objs[0]['dominant_emotion'])
+        cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
+        # print(objs['dominant_emotion'])
+    except:
+        print("NO FACE")
+
 
     if hands:
         hand = hands[0]
