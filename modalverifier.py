@@ -16,12 +16,6 @@ counter = 0
  
 labels = ["Pause", "Resume", "Forward", "Backward"]
 
-		
-
-
- 
-
- 
 while True:
     success, img = cap.read()
     img = cv2.flip(img, 1)
