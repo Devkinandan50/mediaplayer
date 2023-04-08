@@ -1,30 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>YouTube and WhatsApp</title>
-  <style>
-    /* Set the size and position of the two parts */
-    #youtube {
-      width: 60%;
-      height: 100vh;
-      float: left;
-    }
-    #whatsapp {
-      width: 40%;
-      height: 100vh;
-      float: left;
-    }
-  </style>
-</head>
-<body>
-  <div id="youtube">
-    <!-- Embed a YouTube video -->
-    <iframe width="100%" height="100%" src="https://www.youtube.com/" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <div id="whatsapp">
-    <!-- Embed a WhatsApp chat window -->
-    <iframe width="100%" height="100%" src="https://whatsapp.com/" frameborder="0"></iframe>
-  </div>
-</body>
+
+
+  <body>
+    <h1>Live streaming</h1>
+    <div>
+
+        <img src="{{ url_for('video') }}" width="50%"/>
+    </div>
+            
+    </body>
+
+
 </html>
