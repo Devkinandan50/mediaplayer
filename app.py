@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response, jsonify
-from main2 import my_function
+from main import my_function
 
 my_function()
 
