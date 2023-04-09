@@ -14,6 +14,7 @@ offset = 20
 imgSize = 300
 counter = 0
 labels = ["Pause", "Resume", "Forward", "Backward"]
+data = ["dvdv", "cdvfv"]
 
 
 app=Flask(__name__)
@@ -35,11 +36,14 @@ def generate_frames():
         
             try:
                 objs = DeepFace.analyze(imgRGB, actions = ['emotion'])
-                print(objs[0]['dominant_emotion'])
+                # print(objs[0]['dominant_emotion'])
+                data[0] = objs[0]['dominant_emotion']
+                # print(data[0])
                 cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
-                # print(objs['dominant_emotion'])
             except:
-                print("NO FACE")
+                # print("NO FACE")
+                data[0] = "NO FACE"
+                # print(data[0])
         
         
             if hands:
@@ -95,11 +99,16 @@ def generate_frames():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', params=data)
 
 @app.route('/video')
 def video():
     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/data')
+def gen_table():
+    print(data)
+    return str(data)
 
 if __name__=="__main__":
     app.run(debug=True)

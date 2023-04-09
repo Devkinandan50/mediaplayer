@@ -2,14 +2,41 @@
 <html>
 
 
-  <body>
-    <h1>Live streaming</h1>
-    <div>
+<body>
+  <h1>Live streaming</h1>
+  <div>
 
-        <img src="{{ url_for('video') }}" width="50%"/>
-    </div>
-            
-    </body>
+    <img src="{{ url_for('video') }}" width="50%" />
+  </div>
+
+  <div id="my-div">This is my div</div>
+
+  <!-- <ul>
+      {% for item in params %}
+          <li>{{ item }}</li>
+      {% endfor %}
+  </ul> -->
+
+</body>
+
+
+<script type=text/javascript>
+
+
+          setInterval(function() {
+
+            $.getJSON('/data', function(data) {
+            // CreateHtmlTable(data);
+            console.log(data,"DATA");
+          });
+           return false;
+          
+            var divElement = document.getElementById("my-div");
+            // divElement.innerHTML = {{json}};
+        
+          }, 500);
+      
+        </script>
 
 
 </html>
