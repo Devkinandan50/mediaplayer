@@ -9,7 +9,7 @@
     <img src="{{ url_for('video') }}" width="50%" />
   </div>
 
-  <div id="my-div">This is my div</div>
+  <div id="my-data"></div>
 
   <!-- <ul>
       {% for item in params %}
@@ -21,17 +21,18 @@
 
 
 <script type=text/javascript>
+          const myDataElement = document.getElementById("my-data");
+
           setInterval(function() {
 
             fetch('http://127.0.0.1:5000/data')
               .then(response => response.json())
               .then(data => {
-                // Do something with the data
                 console.log(data);
+                myDataElement.innerHTML = `The data is ${data}`;
                 
               })
               .catch(error => {
-                // Handle any errors
                 console.error(error);
             });
           
