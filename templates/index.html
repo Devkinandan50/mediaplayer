@@ -21,22 +21,23 @@
 
 
 <script type=text/javascript>
-
-
           setInterval(function() {
 
-            $.getJSON('/data', function(data) {
-            // CreateHtmlTable(data);
-            console.log(data,"DATA");
-          });
-           return false;
+            fetch('http://127.0.0.1:5000/data')
+              .then(response => response.json())
+              .then(data => {
+                // Do something with the data
+                console.log(data);
+                
+              })
+              .catch(error => {
+                // Handle any errors
+                console.error(error);
+            });
           
-            var divElement = document.getElementById("my-div");
-            // divElement.innerHTML = {{json}};
+            
         
           }, 500);
       
         </script>
-
-
 </html>

@@ -5,6 +5,7 @@ from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
 from deepface import DeepFace
+import json
 
 
 cap = cv2.VideoCapture(0)
@@ -108,7 +109,8 @@ def video():
 @app.route('/data')
 def gen_table():
     print(data)
-    return str(data)
+    str = json.dumps(data)
+    return str
 
 if __name__=="__main__":
     app.run(debug=True)
