@@ -37,14 +37,11 @@ def generate_frames():
         
             try:
                 objs = DeepFace.analyze(imgRGB, actions = ['emotion'])
-                # print(objs[0]['dominant_emotion'])
                 data[0] = objs[0]['dominant_emotion']
-                # print(data[0])
                 cv2.putText(imgRGB, str(objs[0]['dominant_emotion']), (250,150), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,0), 12)
             except:
-                # print("NO FACE")
                 data[0] = "NO FACE"
-                # print(data[0])
+    
         
         
             if hands:
@@ -79,6 +76,7 @@ def generate_frames():
                         hGap = math.ceil((imgSize - hCal) / 2)
                         imgWhite[hGap:hCal + hGap, :] = imgResize
                         prediction, index = classifier.getPrediction(imgWhite, draw=False)
+                        data[1] = labels[index]
              
                     cv2.rectangle(imgOutput, (x - offset, y - offset-50),
                                   (x - offset+90, y - offset-50+50), (255, 0, 255), cv2.FILLED)
@@ -102,15 +100,18 @@ def generate_frames():
 def index():
     return render_template('index.html', params=data)
 
+
 @app.route('/video')
 def video():
     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 @app.route('/data')
 def gen_table():
     print(data)
     str = json.dumps(data)
     return str
+
 
 if __name__=="__main__":
     app.run(debug=True)
